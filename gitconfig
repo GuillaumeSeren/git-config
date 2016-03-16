@@ -1,0 +1,65 @@
+[user]
+  name = Guillaume Seren
+[core]
+  pager = most
+  autocrlf = input
+[color]
+  ui = true
+[rerere]
+  enabled = true
+[merge]
+  tool = vimdiff
+[alias]
+  # LOG
+  le = log --oneline --decorate
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s ' --abbrev-commit
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --numstat
+  lol = log --graph --pretty=format:\"%C(yellow)%h%Creset%C(cyan)%C(bold)%d%Creset %C(cyan)(%cr)%Creset %C(green)%ce%Creset %s\"
+  lnc = log --pretty=format:"%h\\ %s\\ [%an]"
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=short
+  ldr = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%an]" --decorate --date=relative
+  # TAG
+  lt = describe --tags --abbrev=0
+  # SHORT-HAND
+  cp = cherry-pick
+  st = status -s
+  cl = clone
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  # Reset
+  r = reset
+  r1 = reset HEAD^
+  r2 = reset HEAD^^
+  rh = reset --hard
+  rh1 = reset HEAD^ --hard
+  rh2 = reset HEAD^^ --hard
+  # Stashing Operation !
+  sl = stash list
+  sa = stash apply
+  ss = stash save
+  # DIFF
+  diff = diff --word-diff
+  dc = diff --cached
+  # TOOLS
+  springcleaning = for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+  prune-all = !git remote | xargs -n 1 git remote prune
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  debug = !GIT_PAGER= gdb --args git
+  intercommit = !sh -c 'git show "$1" > .git/commit1 && git show "$2" > .git/commit2 && interdiff .git/commit[12] | less -FRS' -
+  wdiff = diff --word-diff
+  dr  = "!f() { git diff "$1"^.."$1"; }; f"
+  lc  = "!f() { git ll "$1"^.."$1"; }; f"
+  diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+  f = "!git ls-files | grep -i"
+  grep = grep -Ii
+  gr = grep -Iirna
+  la = "!git config -l | grep alias | cut -c 7-"
+  ours = "!f() { git co --ours $@ && git add $@; }; f"
+  theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+  lasttag = describe --tags --abbrev=0
+[help]
+  autocorrect = 1
